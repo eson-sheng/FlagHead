@@ -6,7 +6,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "国旗小头像",
+    "navigationBarTitleText": "头像小国旗",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"
