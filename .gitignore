@@ -12,3 +12,9 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
+
+# 数据库本地化配置
+server/local_db.php
+
+# 本地化零时文件
+server/tmp/*
