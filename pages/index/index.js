@@ -71,19 +71,32 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           wx.getUserInfo({
             success: function (res) {
-              wx.request({
-                url: 'https://wx.eson.site/', //仅为示例，并非真实的接口地址
-                method: 'POST',
-                data: res.userInfo,
-                header: {
-                  'content-type': 'application/json' // 默认值
-                },
-                success: function (res) {
-                  console.log(res.data)
-                  self.setData({
-                    picUrl: res.data.pic,
+              wx.showLoading({
+                title: '加载中',
+                mask: true,
+                success: function(){
+                  wx.request({
+                    url: 'https://wx.eson.site/', //仅为示例，并非真实的接口地址
+                    method: 'POST',
+                    data: res.userInfo,
+                    header: {
+                      'content-type': 'application/json' // 默认值
+                    },
+                    success: function (res) {
+                      console.log(res.data)
+                      self.setData({
+                        picUrl: res.data.pic,
+                      })
+                      self.data.picUrl = res.data.pic;
+                      wx.hideLoading()
+                    }
                   })
-                  self.data.picUrl = res.data.pic;
+                },
+                fail: function(){
+                  wx.showToast({
+                    title: '获取失败！',
+                    duration: 2000
+                  })
                 }
               })
             }
