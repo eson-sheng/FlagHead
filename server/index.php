@@ -138,7 +138,12 @@ ESO;
             $moban = './moban.png';
 
             // 头像图片信息
-            $pic_img = imagecreatefromjpeg($pic);
+            $pic_img = @imagecreatefromjpeg($pic);
+            $error = error_get_last();
+            if ($error) {
+                echo json_encode($error);
+                return false;
+            }
             $pic_width = imagesx($pic_img);
             $pic_height = imagesy($pic_img);
 
