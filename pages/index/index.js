@@ -12,6 +12,11 @@ Page({
   },
   //事件处理函数
   onLoad: function () {
+    // 显示当前页面的转发按钮
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    });
     this.getPicUrl();
     console.log(this.data.picUrl);
     if (app.globalData.userInfo) {
@@ -131,5 +136,23 @@ Page({
         console.log('fail')
       }
     })
+  },
+  onShareAppMessage: function() {
+    return {
+      title: '头像小国旗',
+      path: '/pages/index/index',
+      success: (data) => {
+        console.log(data)
+      }
+    }
+  },
+  onShareTimeline: function(){
+    return {
+      title: '头像小国旗',
+      query: '/pages/index/index',
+      success: (data) => {
+        console.log(data)
+      }
+    }
   }
 })
