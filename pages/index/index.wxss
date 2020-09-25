@@ -13,15 +13,41 @@
 }
 
 .avatar {
-  width: 528rpx;
-  height: 528rpx;
-  margin: 50rpx;
+  width: 365rpx;
+  height: 365rpx;
+  margin: 180rpx 100rpx 50rpx 100rpx;
+}
+
+.moban {
+  width: 365rpx;
+  height: 365rpx;
+  margin: 180rpx 100rpx 50rpx 100rpx;
+  background-color: #f8f8f8;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color:  #f8f8f8;
 }
 
 .usermotto {
   margin-top: 200px;
+}
+
+.share {
+  margin: 5rpx;
+  font-size: 22rpx;
+  background-color: rgba(255,255,255,0);
+  border-radius:0;
+  border: none;
+  color: #f8f8f8;
+}
+
+.share::after {
+  border: none;
+}
+
+.btn {
+  color: chocolate;
+  border-radius: 50rpx;
+  width: 375rpx;
 }

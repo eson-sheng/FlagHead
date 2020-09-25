@@ -18,7 +18,6 @@ Page({
       menus: ['shareAppMessage', 'shareTimeline']
     });
     this.getPicUrl();
-    console.log(this.data.picUrl);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -47,18 +46,7 @@ Page({
     }
   },
   getUserInfo: function (e) {
-
     if (e.detail.rawData) {
-      wx.login({
-        success(res) {
-          if (res.code) {
-            // 发起网络请求
-            console.log(res);
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        }
-      })
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
         userInfo: e.detail.userInfo,
@@ -66,7 +54,6 @@ Page({
       })
     }
     this.getPicUrl();
-
   },
   getPicUrl: function () {
     let self = this;
@@ -112,34 +99,69 @@ Page({
   },
   downfile: function () {
     let self = this;
-    wx.downloadFile({
-      url: self.data.picUrl,
-      success: function (res) {
-        console.log(res)
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
+    wx.showLoading({
+      title: '正在保存。。。',
+      mask: true,
+      success: function(){
+        wx.downloadFile({
+          url: self.data.picUrl,
           success: function (res) {
-            wx.showToast({
-              title: '保存成功',
-              icon: 'success',
-              duration: 2000
+            console.log(res);
+
+            wx.getSetting({
+              success: function (res) {
+                if (!res.authSetting['scope.writePhotosAlbum']) {
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '请点击设置开启相册权限~',
+                    icon: 'none',
+                    duration: 2000
+                  });
+                  return false;
+                }
+              }
             })
-            console.log(res)
+
+            wx.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function (res) {
+                wx.showToast({
+                  title: '保存成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+                console.log(res)
+                wx.hideLoading();
+              },
+              fail: function (res) {
+                console.log(res);
+                wx.hideLoading();
+                wx.showToast({
+                  title: '取消保存！',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            })
           },
-          fail: function (res) {
-            console.log(res)
+          fail: function () {
+            wx.hideLoading()
             console.log('fail')
           }
         })
       },
-      fail: function () {
-        console.log('fail')
+      fail: function(){
+        wx.hideLoading()
+        wx.showToast({
+          title: '获取失败！',
+          duration: 2000
+        })
       }
     })
   },
   onShareAppMessage: function() {
     return {
-      title: '头像小国旗',
+      title: '北辰送您头像小国旗',
       imageUrl:'/static/FlagHead.png',
       path: '/pages/index/index',
       success: (data) => {
@@ -149,12 +171,12 @@ Page({
   },
   onShareTimeline: function(){
     return {
-      title: '头像小国旗',
+      title: '北辰送您头像小国旗',
       imageUrl:'/static/FlagHead.png',
-      query: '/static/FlagHead.png',
+      query: '/pages/index/index',
       success: (data) => {
         console.log(data)
       }
     }
-  }
+  },
 })

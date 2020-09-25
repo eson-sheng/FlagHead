@@ -1,10 +1,17 @@
 <!--index.wxml-->
 <view class="container">
+<image class="weather-bg" src="/static/backgroundImage.png"></image>
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取国旗头像 </button>
+    <view wx:if="{{!hasUserInfo && canIUse}}">
+      <image class="moban" src="/static/moban.png" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="getUserInfo"></image>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn">
+         点击获取国旗头像 
+      </button>
+    </view>
     <block wx:else>
-      <image class="avatar" src="{{picUrl}}" bindtap="downfile"></image>
+      <image class="avatar" src="{{picUrl}}" bindtouchstart="downfile"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
+    <button class="share" open-type="share">分享给我的好友</button>
   </view>
 </view>
