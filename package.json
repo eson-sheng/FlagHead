@@ -1,0 +1,24 @@
+{
+  "name": "FlagHead",
+  "version": "1.0.0",
+  "description": "- 获取用户信息 - 发送头像链接到api - 处理返回给小程序 - 显示带国旗的头像",
+  "main": "app.js",
+  "dependencies": {
+    "@types/weapp-api": "0.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eson-sheng/FlagHead.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eson-sheng/FlagHead/issues"
+  },
+  "homepage": "https://github.com/eson-sheng/FlagHead#readme"
+}

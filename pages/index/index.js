@@ -140,6 +140,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: '头像小国旗',
+      imageUrl:'/static/FlagHead.png',
       path: '/pages/index/index',
       success: (data) => {
         console.log(data)
@@ -149,7 +150,8 @@ Page({
   onShareTimeline: function(){
     return {
       title: '头像小国旗',
-      query: '/pages/index/index',
+      imageUrl:'/static/FlagHead.png',
+      query: '/static/FlagHead.png',
       success: (data) => {
         console.log(data)
       }
