@@ -236,6 +236,7 @@ ESO;
             PDO::ERRMODE_EXCEPTION
         );
         $_db->exec('SET NAMES utf8');
+        $_db->exec('SET NAMES \'utf8mb4\' COLLATE \'utf8mb4_general_ci\'');
         $sql = "INSERT INTO `FlagHead` ( `wx` ) VALUES ( :wx );";
         $stmt = $_db->prepare($sql);
         try {
